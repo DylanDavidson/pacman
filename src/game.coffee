@@ -9,6 +9,7 @@
 
 @onload = ->
   @game = new Game()
+  window.onkeydown = @game.keyListener
   @render()
 
 @render = ->
@@ -26,3 +27,14 @@ class @Game
 
   addToScene: (object) ->
     @base.addToScene(object)
+
+  keyListener: (e) =>
+    key = if e.keyCode then e.keyCode else e.which
+    if key == 37 # Left Arrow
+      @pacman.xforce(-1)
+    else if key == 38 # Up Arrow
+      @pacman.yforce(1)
+    else if key == 39 # Right Arrow
+      @pacman.xforce(1)
+    else if key == 40 # Down Arrow
+      @pacman.yforce(-1)

@@ -7,6 +7,8 @@
 
     Pacman.RADIUS = 3;
 
+    Pacman.VELOCITY = 10;
+
     function Pacman(game) {
       this.game = game;
       this.geometry = new THREE.SphereGeometry(Pacman.RADIUS);
@@ -14,10 +16,18 @@
         color: Pacman.COLOR
       });
       this.object = new Physijs.SphereMesh(this.geometry, this.material, Pacman.MASS);
-      this.object.position.set(0, 0, 100);
+      this.object.position.set(0, 0, 10);
       this.game.addToScene(this.object);
       this.edge = new Edge(this.object, this.game);
     }
+
+    Pacman.prototype.xforce = function(direction) {
+      return this.object.setLinearVelocity(new THREE.Vector3(Pacman.VELOCITY * direction, 0, 0));
+    };
+
+    Pacman.prototype.yforce = function(direction) {
+      return this.object.setLinearVelocity(new THREE.Vector3(0, Pacman.VELOCITY * direction, 0));
+    };
 
     return Pacman;
 
