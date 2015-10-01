@@ -26,7 +26,7 @@
 
   ENABLE_SHADOW_MAPS = true;
 
-  GRAVITY = new THREE.Vector3(0, 0, 0);
+  GRAVITY = new THREE.Vector3(0, 0, -10);
 
   CAMERA_POSITON = new THREE.Vector3(0, 0, 130);
 

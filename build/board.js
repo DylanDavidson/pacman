@@ -5,6 +5,10 @@
 
     Board.COLOR = 0x2121DE;
 
+    Board.COLOR = 'green';
+
+    Board.ROTATION_MAX = 30;
+
     function Board(game) {
       this.game = game;
       this.geometry = new THREE.BoxGeometry(80, 100, 5);
@@ -19,13 +23,13 @@
 
     Board.prototype.addWalls = function() {
       this.left_wall = new Wall(this.game, 'Side');
-      this.left_wall.setPosition(-40, 0, 0);
+      this.left_wall.setPosition(-40, 0, 7.5);
       this.right_wall = new Wall(this.game, 'Side');
-      this.right_wall.setPosition(40, 0, 0);
+      this.right_wall.setPosition(40, 0, 7.5);
       this.top_wall = new Wall(this.game, 'Edge');
-      this.top_wall.setPosition(0, 47.5, 0);
+      this.top_wall.setPosition(0, 47.5, 7.5);
       this.bottom_wall = new Wall(this.game, 'Edge');
-      return this.bottom_wall.setPosition(0, -47.5, 0);
+      return this.bottom_wall.setPosition(0, -47.5, 7.5);
     };
 
     return Board;

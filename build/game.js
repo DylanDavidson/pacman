@@ -2,6 +2,14 @@
 (function() {
   this.game = null;
 
+  this.timeout = function(delay, callback) {
+    return setTimeout(callback, delay);
+  };
+
+  this.radian = function(degree) {
+    return (Math.PI / 180) * degree;
+  };
+
   this.onload = function() {
     this.game = new Game();
     return this.render();
@@ -16,6 +24,7 @@
     function Game() {
       this.base = new Base();
       this.board = new Board(this);
+      this.pacman = new Pacman(this);
     }
 
     Game.prototype.render = function() {

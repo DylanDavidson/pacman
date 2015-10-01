@@ -2,8 +2,8 @@ class @Wall
   @MASS: 0
   @COLOR: 0x2121DE
   @TYPE_MAP: {
-    'Side': new THREE.Vector3(5, 100, 5),
-    'Edge': new THREE.Vector3(75, 5, 5),
+    'Side': new THREE.Vector3(5, 100, 10),
+    'Edge': new THREE.Vector3(75, 5, 10),
   }
 
   constructor: (game, type) ->
@@ -12,8 +12,8 @@ class @Wall
     @geometry = new THREE.BoxGeometry(@size.x, @size.y, @size.z)
     @material = new THREE.MeshBasicMaterial({ color: Wall.COLOR })
     @object = new Physijs.BoxMesh(@geometry, @material, Wall.MASS)
-    @game.addToScene(@object)
     @edge = new Edge(@object, @game)
+    @game.addToScene(@object)
 
   setPosition: (x, y, z) ->
     @object.position.set(x, y, z)

@@ -6,8 +6,8 @@
     Wall.COLOR = 0x2121DE;
 
     Wall.TYPE_MAP = {
-      'Side': new THREE.Vector3(5, 100, 5),
-      'Edge': new THREE.Vector3(75, 5, 5)
+      'Side': new THREE.Vector3(5, 100, 10),
+      'Edge': new THREE.Vector3(75, 5, 10)
     };
 
     function Wall(game, type) {
@@ -18,8 +18,8 @@
         color: Wall.COLOR
       });
       this.object = new Physijs.BoxMesh(this.geometry, this.material, Wall.MASS);
-      this.game.addToScene(this.object);
       this.edge = new Edge(this.object, this.game);
+      this.game.addToScene(this.object);
     }
 
     Wall.prototype.setPosition = function(x, y, z) {
