@@ -7,7 +7,7 @@
 
     Pacman.RADIUS = 3;
 
-    Pacman.VELOCITY = 10;
+    Pacman.VELOCITY = 20;
 
     function Pacman(game) {
       this.game = game;
@@ -16,7 +16,7 @@
         color: Pacman.COLOR
       });
       this.object = new Physijs.SphereMesh(this.geometry, this.material, Pacman.MASS);
-      this.object.position.set(0, 0, 10);
+      this.object.position.set(0, -10, 7.5);
       this.game.addToScene(this.object);
       this.edge = new Edge(this.object, this.game);
     }

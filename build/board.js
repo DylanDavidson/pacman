@@ -11,25 +11,89 @@
 
     function Board(game) {
       this.game = game;
-      this.geometry = new THREE.BoxGeometry(80, 100, 5);
+      this.geometry = new THREE.BoxGeometry(90, 100, 5);
       this.material = new THREE.MeshBasicMaterial({
         color: Board.COLOR
       });
       this.object = new Physijs.BoxMesh(this.geometry, this.material, Board.MASS);
       this.game.addToScene(this.object);
       this.edge = new Edge(this.object, this.game);
-      this.addWalls();
+      this.addSideWalls();
+      this.generateMaze();
     }
 
-    Board.prototype.addWalls = function() {
+    Board.prototype.addSideWalls = function() {
       this.left_wall = new Wall(this.game, 'Side');
-      this.left_wall.setPosition(-40, 0, 7.5);
+      this.left_wall.setPosition(-45, 0, 7.5);
       this.right_wall = new Wall(this.game, 'Side');
-      this.right_wall.setPosition(40, 0, 7.5);
+      this.right_wall.setPosition(45, 0, 7.5);
       this.top_wall = new Wall(this.game, 'Edge');
       this.top_wall.setPosition(0, 47.5, 7.5);
       this.bottom_wall = new Wall(this.game, 'Edge');
       return this.bottom_wall.setPosition(0, -47.5, 7.5);
+    };
+
+    Board.prototype.generateMaze = function() {
+      this.wall1 = new Wall(this.game, 'FatMid');
+      this.wall1.setPosition(-31, 36, 7.5);
+      this.wall2 = new Wall(this.game, 'FatWide');
+      this.wall2.setPosition(-14, 36, 7.5);
+      this.wall3 = new Wall(this.game, 'FatMid');
+      this.wall3.setPosition(31, 36, 7.5);
+      this.wall4 = new Wall(this.game, 'FatWide');
+      this.wall4.setPosition(14, 36, 7.5);
+      this.divider = new Wall(this.game, 'TCenterV');
+      this.divider.setPosition(0, 40, 7.5);
+      this.wall5 = new Wall(this.game, 'ThinMid');
+      this.wall5.setPosition(-31, 26, 7.5);
+      this.wall6 = new Wall(this.game, 'ThinMid');
+      this.wall6.setPosition(31, 26, 7.5);
+      this.wall7 = new Wall(this.game, 'TTopH');
+      this.wall7.setPosition(0, 26, 7.5);
+      this.wall8 = new Wall(this.game, 'TCenterV');
+      this.wall8.setPosition(0, 19.5, 7.5);
+      this.wall9 = new Wall(this.game, 'TTopV');
+      this.wall9.setPosition(-18.5, 16.5, 7.5);
+      this.wall10 = new Wall(this.game, 'TCenterH');
+      this.wall10.setPosition(-13, 16.5, 7.5);
+      this.wall11 = new Wall(this.game, 'TTopV');
+      this.wall11.setPosition(18, 16.5, 7.5);
+      this.wall12 = new Wall(this.game, 'TCenterH');
+      this.wall12.setPosition(13, 16.5, 7.5);
+      this.wall13 = new Wall(this.game, 'Big');
+      this.wall13.setPosition(-35, 0, 7.5);
+      this.wall14 = new Wall(this.game, 'Big');
+      this.wall14.setPosition(35, 0, 7.5);
+      this.wall15 = new Wall(this.game, 'Center');
+      this.wall15.setPosition(0, 0, 7.5);
+      this.wall16 = new Wall(this.game, 'TTopV');
+      this.wall16.setPosition(-18, -10, 7.5);
+      this.wall17 = new Wall(this.game, 'TTopV');
+      this.wall17.setPosition(18, -10, 7.5);
+      this.wall18 = new Wall(this.game, 'TTopH');
+      this.wall18.setPosition(0, -15, 7.5);
+      this.wall19 = new Wall(this.game, 'TCenterV');
+      this.wall19.setPosition(0, -21, 7.5);
+      this.wall20 = new Wall(this.game, 'ThinWide');
+      this.wall20.setPosition(-14, -28, 7.5);
+      this.wall21 = new Wall(this.game, 'ThinWide');
+      this.wall21.setPosition(14, -28, 7.5);
+      this.wall22 = new Wall(this.game, 'ThinMid');
+      this.wall22.setPosition(-31, -25, 7.5);
+      this.wall22 = new Wall(this.game, 'TCenterV');
+      this.wall22.setPosition(-27.25, -31.5, 7.5);
+      this.wall23 = new Wall(this.game, 'ThinMid');
+      this.wall23.setPosition(31, -25, 7.5);
+      this.wall24 = new Wall(this.game, 'TCenterV');
+      this.wall24.setPosition(27.25, -31.5, 7.5);
+      this.wall25 = new Wall(this.game, 'TTopH');
+      this.wall25.setPosition(0, -37.5, 7.5);
+      this.wall26 = new Wall(this.game, 'TCenterV');
+      this.wall26.setPosition(0, -30.5, 7.5);
+      this.wall27 = new Wall(this.game, 'TCenterV');
+      this.wall27.setPosition(-18, -40.5, 7.5);
+      this.wall28 = new Wall(this.game, 'TCenterV');
+      return this.wall28.setPosition(18, -40.5, 7.5);
     };
 
     return Board;

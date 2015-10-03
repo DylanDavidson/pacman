@@ -2,14 +2,14 @@ class @Pacman
   @MASS: 10
   @COLOR: 0xFFEE00
   @RADIUS: 3
-  @VELOCITY: 10
+  @VELOCITY: 20
 
   constructor: (game) ->
     @game = game
     @geometry = new THREE.SphereGeometry(Pacman.RADIUS)
     @material = new THREE.MeshBasicMaterial({ color: Pacman.COLOR })
     @object = new Physijs.SphereMesh(@geometry, @material, Pacman.MASS)
-    @object.position.set(0, 0, 10)
+    @object.position.set(0, -10, 7.5)
     @game.addToScene(@object)
     @edge = new Edge(@object, @game)
 
