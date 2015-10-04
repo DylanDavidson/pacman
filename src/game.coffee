@@ -21,12 +21,16 @@ class @Game
     @base = new Base()
     @board = new Board(@)
     @pacman = new Pacman(@)
+    @dots = new Dots(@)
 
   render: ->
     @base.render()
 
   addToScene: (object) ->
     @base.addToScene(object)
+
+  removeFromScene: (object) ->
+    @base.removeFromScene(object)
 
   keyListener: (e) =>
     key = if e.keyCode then e.keyCode else e.which

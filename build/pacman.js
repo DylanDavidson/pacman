@@ -17,6 +17,7 @@
       });
       this.object = new Physijs.SphereMesh(this.geometry, this.material, Pacman.MASS);
       this.object.position.set(0, -10, 7.5);
+      this.object.name = 'Pacman';
       this.game.addToScene(this.object);
       this.edge = new Edge(this.object, this.game);
     }

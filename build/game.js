@@ -29,6 +29,7 @@
       this.base = new Base();
       this.board = new Board(this);
       this.pacman = new Pacman(this);
+      this.dots = new Dots(this);
     }
 
     Game.prototype.render = function() {
@@ -37,6 +38,10 @@
 
     Game.prototype.addToScene = function(object) {
       return this.base.addToScene(object);
+    };
+
+    Game.prototype.removeFromScene = function(object) {
+      return this.base.removeFromScene(object);
     };
 
     Game.prototype.keyListener = function(e) {

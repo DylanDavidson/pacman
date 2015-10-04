@@ -10,6 +10,7 @@ class @Pacman
     @material = new THREE.MeshBasicMaterial({ color: Pacman.COLOR })
     @object = new Physijs.SphereMesh(@geometry, @material, Pacman.MASS)
     @object.position.set(0, -10, 7.5)
+    @object.name = 'Pacman'
     @game.addToScene(@object)
     @edge = new Edge(@object, @game)
 
