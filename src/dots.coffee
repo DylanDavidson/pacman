@@ -2,6 +2,7 @@ class @Dots
   constructor: (game) ->
     @game = game
     @addDots()
+    @total = @dots.length
 
   addDots: ->
     @dots = []

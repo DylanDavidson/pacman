@@ -34,6 +34,7 @@
       if (other_object.name === 'Pacman') {
         this.game.removeFromScene(this.object);
         this.dots.dots.splice(this.dots.dots.indexOf(this), 1);
+        this.game.updateScore(this.dots.total - this.dots.dots.length);
         Dot.SOUND.play();
       }
       if (this.dots.dots.length <= 0) {

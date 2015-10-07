@@ -18,6 +18,7 @@
 
 class @Game
   @SOUND: new Audio('../sounds/intro.wav')
+  @NINETY_DEG_IN_RADIAN: 1.57079633
 
   constructor: ->
     @base = new Base()
@@ -29,6 +30,7 @@ class @Game
     @inky = new Ghost(@, 2)
     @clyde = new Ghost(@, 3)
     Game.SOUND.play()
+    @score = new Score(@)
 
   render: ->
     @updateCamera()
@@ -53,3 +55,6 @@ class @Game
       @pacman.xforce(1)
     else if key == 40 # Down Arrow
       @pacman.yforce(-1)
+
+  updateScore: (score) ->
+    @score.setScore(score)

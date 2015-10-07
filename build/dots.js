@@ -4,6 +4,7 @@
     function Dots(game) {
       this.game = game;
       this.addDots();
+      this.total = this.dots.length;
     }
 
     Dots.prototype.addDots = function() {

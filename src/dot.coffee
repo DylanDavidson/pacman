@@ -21,7 +21,8 @@ class @Dot
   collision: (other_object) =>
     if(other_object.name == 'Pacman')
       @game.removeFromScene(@object)
-      @dots.dots.splice(@dots.dots.indexOf(@), 1)
+      @dots.dots.splice(@dots.dots.indexOf(@), 1)100
+      @game.updateScore(@dots.total - @dots.dots.length)
       Dot.SOUND.play()
     if @dots.dots.length <= 0
       document.getElementById('over').innerHTML = 'YOU WIN'

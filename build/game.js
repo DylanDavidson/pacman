@@ -26,6 +26,8 @@
   this.Game = (function() {
     Game.SOUND = new Audio('../sounds/intro.wav');
 
+    Game.NINETY_DEG_IN_RADIAN = 1.57079633;
+
     function Game() {
       this.keyListener = bind(this.keyListener, this);
       this.base = new Base();
@@ -37,6 +39,7 @@
       this.inky = new Ghost(this, 2);
       this.clyde = new Ghost(this, 3);
       Game.SOUND.play();
+      this.score = new Score(this);
     }
 
     Game.prototype.render = function() {
@@ -68,6 +71,10 @@
       } else if (key === 40) {
         return this.pacman.yforce(-1);
       }
+    };
+
+    Game.prototype.updateScore = function(score) {
+      return this.score.setScore(score);
     };
 
     return Game;
