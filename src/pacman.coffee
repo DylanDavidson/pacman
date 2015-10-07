@@ -19,3 +19,15 @@ class @Pacman
 
   yforce: (direction) ->
     @object.setLinearVelocity(new THREE.Vector3(0, Pacman.VELOCITY * direction, 0))
+
+  getPosition: ->
+    @object.position
+
+  getDirection: ->
+    velocity = @object._physijs.linearVelocity
+    x = Math.abs(velocity.x)
+    y = Math.abs(velocity.y)
+    if x > y
+      new THREE.Vector3(Math.sign(velocity.x), 0, 0)
+    else
+      new THREE.Vector3(Math.sign(velocity.y), 0, 0)

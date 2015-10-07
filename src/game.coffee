@@ -24,7 +24,11 @@ class @Game
     @dots = new Dots(@)
 
   render: ->
+    @updateCamera()
     @base.render()
+
+  updateCamera: ->
+   @base.updateCamera(@pacman)
 
   addToScene: (object) ->
     @base.addToScene(object)

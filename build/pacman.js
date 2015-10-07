@@ -30,6 +30,22 @@
       return this.object.setLinearVelocity(new THREE.Vector3(0, Pacman.VELOCITY * direction, 0));
     };
 
+    Pacman.prototype.getPosition = function() {
+      return this.object.position;
+    };
+
+    Pacman.prototype.getDirection = function() {
+      var velocity, x, y;
+      velocity = this.object._physijs.linearVelocity;
+      x = Math.abs(velocity.x);
+      y = Math.abs(velocity.y);
+      if (x > y) {
+        return new THREE.Vector3(Math.sign(velocity.x), 0, 0);
+      } else {
+        return new THREE.Vector3(Math.sign(velocity.y), 0, 0);
+      }
+    };
+
     return Pacman;
 
   })();

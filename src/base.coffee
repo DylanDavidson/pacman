@@ -30,10 +30,17 @@ class @Base
   constructor: ->
     @scene = new Physijs.Scene()
     @renderer = new THREE.WebGLRenderer()
+    @follow_camera = new THREE.PerspectiveCamera(FOV, ASPECT_RATIO, NEAR_FRUSTRUM, FAR_FRUSTRUM)
     @camera = new THREE.PerspectiveCamera(FOV, ASPECT_RATIO, NEAR_FRUSTRUM, FAR_FRUSTRUM)
     @spotlight = new THREE.SpotLight(LIGHT_COLOR)
 
+    @spotlight = new THREE.SpotLight(LIGHT_COLOR)
+
     @scene.setGravity(GRAVITY)
+
+    @height = window.innerHeight
+    @width = window.innerWidth
+    @renderer.autoClear = false
 
     @setupRenderer()
     @setupCamera()
@@ -42,6 +49,11 @@ class @Base
   # Called every frame, updates the scene and simulates the physics
   render: ->
     @scene.simulate()
+    @renderer.clear()
+    @renderer.setViewport(0, 0, @width, @height)
+    @renderer.render(@scene, @follow_camera)
+    @renderer.clearDepth()
+    @renderer.setViewport(0, @height - 310, 300, 300)
     @renderer.render(@scene, @camera)
 
   # Adds given object to scene
@@ -64,6 +76,9 @@ class @Base
     @setCameraPosition(CAMERA_POSITON.x, CAMERA_POSITON.y, CAMERA_POSITON.z)
     @camera.up = new THREE.Vector3(0, 1, 0)
     @camera.lookAt(@scene.position)
+    @follow_camera.position.set(0, 0, 0)
+    @follow_camera.up = new THREE.Vector3(0, 0, 1)
+    @addToScene(@follow_camera)
     @addToScene(@camera)
 
   setupSpotlight: ->
@@ -76,3 +91,11 @@ class @Base
     @spotlight.shadowDarkness = 0.5
     @spotlight.castShadow = true
     @addToScene(@spotlight)
+
+  updateCamera: (player) ->
+    position = player.getPosition()
+    @follow_camera.lookAt(position)
+    camera_position = new THREE.Vector3(0, 5, 20)
+    @follow_camera.position.set(
+      position.x + camera_position.x, position.y - camera_position.y, position.z + camera_position.z
+    )

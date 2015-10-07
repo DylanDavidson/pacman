@@ -33,7 +33,12 @@
     }
 
     Game.prototype.render = function() {
+      this.updateCamera();
       return this.base.render();
+    };
+
+    Game.prototype.updateCamera = function() {
+      return this.base.updateCamera(this.pacman);
     };
 
     Game.prototype.addToScene = function(object) {

@@ -34,9 +34,14 @@
     function Base() {
       this.scene = new Physijs.Scene();
       this.renderer = new THREE.WebGLRenderer();
+      this.follow_camera = new THREE.PerspectiveCamera(FOV, ASPECT_RATIO, NEAR_FRUSTRUM, FAR_FRUSTRUM);
       this.camera = new THREE.PerspectiveCamera(FOV, ASPECT_RATIO, NEAR_FRUSTRUM, FAR_FRUSTRUM);
       this.spotlight = new THREE.SpotLight(LIGHT_COLOR);
+      this.spotlight = new THREE.SpotLight(LIGHT_COLOR);
       this.scene.setGravity(GRAVITY);
+      this.height = window.innerHeight;
+      this.width = window.innerWidth;
+      this.renderer.autoClear = false;
       this.setupRenderer();
       this.setupCamera();
       this.setupSpotlight();
@@ -44,6 +49,11 @@
 
     Base.prototype.render = function() {
       this.scene.simulate();
+      this.renderer.clear();
+      this.renderer.setViewport(0, 0, this.width, this.height);
+      this.renderer.render(this.scene, this.follow_camera);
+      this.renderer.clearDepth();
+      this.renderer.setViewport(0, this.height - 310, 300, 300);
       return this.renderer.render(this.scene, this.camera);
     };
 
@@ -70,6 +80,9 @@
       this.setCameraPosition(CAMERA_POSITON.x, CAMERA_POSITON.y, CAMERA_POSITON.z);
       this.camera.up = new THREE.Vector3(0, 1, 0);
       this.camera.lookAt(this.scene.position);
+      this.follow_camera.position.set(0, 0, 0);
+      this.follow_camera.up = new THREE.Vector3(0, 0, 1);
+      this.addToScene(this.follow_camera);
       return this.addToScene(this.camera);
     };
 
@@ -82,6 +95,14 @@
       this.spotlight.shadowDarkness = 0.5;
       this.spotlight.castShadow = true;
       return this.addToScene(this.spotlight);
+    };
+
+    Base.prototype.updateCamera = function(player) {
+      var camera_position, position;
+      position = player.getPosition();
+      this.follow_camera.lookAt(position);
+      camera_position = new THREE.Vector3(0, 5, 20);
+      return this.follow_camera.position.set(position.x + camera_position.x, position.y - camera_position.y, position.z + camera_position.z);
     };
 
     return Base;
