@@ -9,6 +9,8 @@
 
     Dot.MASS = 0;
 
+    Dot.SOUND = new Audio('../sounds/chomp.wav');
+
     function Dot(game, dots) {
       this.collision = bind(this.collision, this);
       this.game = game;
@@ -32,6 +34,7 @@
       if (other_object.name === 'Pacman') {
         this.game.removeFromScene(this.object);
         this.dots.dots.splice(this.dots.dots.indexOf(this), 1);
+        Dot.SOUND.play();
       }
       if (this.dots.dots.length <= 0) {
         document.getElementById('over').innerHTML = 'YOU WIN';

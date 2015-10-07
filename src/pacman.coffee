@@ -3,6 +3,7 @@ class @Pacman
   @COLOR: 0xFFEE00
   @RADIUS: 3
   @VELOCITY: 20
+  @SOUND: new Audio('../sounds/death.wav')
 
   constructor: (game) ->
     @game = game
@@ -38,3 +39,4 @@ class @Pacman
       @game.removeFromScene(@object)
       document.getElementById('over').innerHTML = 'GAME OVER'
       document.getElementById('over').style.display = 'block'
+      Pacman.SOUND.play()

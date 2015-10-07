@@ -24,6 +24,8 @@
   };
 
   this.Game = (function() {
+    Game.SOUND = new Audio('../sounds/intro.wav');
+
     function Game() {
       this.keyListener = bind(this.keyListener, this);
       this.base = new Base();
@@ -34,11 +36,11 @@
       this.blinky = new Ghost(this, 1);
       this.inky = new Ghost(this, 2);
       this.clyde = new Ghost(this, 3);
+      Game.SOUND.play();
     }
 
     Game.prototype.render = function() {
       this.updateCamera();
-      console.log(this.dots.dots.length);
       return this.base.render();
     };
 

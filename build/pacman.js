@@ -11,6 +11,8 @@
 
     Pacman.VELOCITY = 20;
 
+    Pacman.SOUND = new Audio('../sounds/death.wav');
+
     function Pacman(game) {
       this.collision = bind(this.collision, this);
       this.game = game;
@@ -54,7 +56,8 @@
       if (other.name === 'Ghost') {
         this.game.removeFromScene(this.object);
         document.getElementById('over').innerHTML = 'GAME OVER';
-        return document.getElementById('over').style.display = 'block';
+        document.getElementById('over').style.display = 'block';
+        return Pacman.SOUND.play();
       }
     };
 

@@ -2,6 +2,7 @@ class @Dot
   @RADIUS: 1
   @COLOR: 'white'
   @MASS: 0
+  @SOUND: new Audio('../sounds/chomp.wav')
 
   constructor: (game, dots) ->
     @game = game
@@ -21,6 +22,7 @@ class @Dot
     if(other_object.name == 'Pacman')
       @game.removeFromScene(@object)
       @dots.dots.splice(@dots.dots.indexOf(@), 1)
+      Dot.SOUND.play()
     if @dots.dots.length <= 0
       document.getElementById('over').innerHTML = 'YOU WIN'
       document.getElementById('over').style.display = 'block'

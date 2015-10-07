@@ -17,6 +17,8 @@
   requestAnimationFrame(window.render)
 
 class @Game
+  @SOUND: new Audio('../sounds/intro.wav')
+
   constructor: ->
     @base = new Base()
     @board = new Board(@)
@@ -26,10 +28,10 @@ class @Game
     @blinky = new Ghost(@, 1)
     @inky = new Ghost(@, 2)
     @clyde = new Ghost(@, 3)
+    Game.SOUND.play()
 
   render: ->
     @updateCamera()
-    console.log(@dots.dots.length)
     @base.render()
 
   updateCamera: ->
