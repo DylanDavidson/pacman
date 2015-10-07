@@ -22,6 +22,10 @@ class @Game
     @board = new Board(@)
     @pacman = new Pacman(@)
     @dots = new Dots(@)
+    @pinky = new Ghost(@, 0)
+    @blinky = new Ghost(@, 1)
+    @inky = new Ghost(@, 2)
+    @clyde = new Ghost(@, 3)
 
   render: ->
     @updateCamera()

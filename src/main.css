@@ -17,3 +17,13 @@ body {
   bottom: 5px;
   right: 5px;
 }
+
+#over {
+  position: absolute;
+  left: 18%;
+  top: 30%;
+  font-size: 200px;
+  font-family: 'Courier New', Courier;
+  font-weight: bold;
+  display: none;
+}

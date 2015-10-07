@@ -13,6 +13,7 @@ class @Pacman
     @object.name = 'Pacman'
     @game.addToScene(@object)
     @edge = new Edge(@object, @game)
+    @object.addEventListener('collision', @collision)
 
   xforce: (direction) ->
     @object.setLinearVelocity(new THREE.Vector3(Pacman.VELOCITY * direction, 0, 0))
@@ -31,3 +32,8 @@ class @Pacman
       new THREE.Vector3(Math.sign(velocity.x), 0, 0)
     else
       new THREE.Vector3(Math.sign(velocity.y), 0, 0)
+
+  collision: (other) =>
+    if other.name == 'Ghost'
+      @game.removeFromScene(@object)
+      document.getElementById('over').style.display = 'block'

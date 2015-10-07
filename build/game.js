@@ -30,6 +30,10 @@
       this.board = new Board(this);
       this.pacman = new Pacman(this);
       this.dots = new Dots(this);
+      this.pinky = new Ghost(this, 0);
+      this.blinky = new Ghost(this, 1);
+      this.inky = new Ghost(this, 2);
+      this.clyde = new Ghost(this, 3);
     }
 
     Game.prototype.render = function() {
