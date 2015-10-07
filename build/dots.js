@@ -35,7 +35,7 @@
         dot.setPosition(i, 31, 7.5);
         this.dots.push(dot);
       }
-      for (i = o = -39; o <= -19; i = o += 5) {
+      for (i = o = -39; o <= -24; i = o += 5) {
         dot = new Dot(this.game, this);
         dot.setPosition(i, 21, 7.5);
         this.dots.push(dot);

@@ -30,7 +30,7 @@ class @Dots
       dot.setPosition(i, 31, 7.5)
       @dots.push(dot)
     # Row 3
-    for i in [-39..-19] by 5
+    for i in [-39..-24] by 5
       dot = new Dot(@game, @)
       dot.setPosition(i, 21, 7.5)
       @dots.push(dot)
