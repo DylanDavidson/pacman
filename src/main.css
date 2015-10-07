@@ -2,12 +2,18 @@ body {
   margin: 0;
   padding: 0;
   overflow: hidden;
+  color: white;
+  font-size: 20px;
 }
 
 .name {
   position: absolute;
   bottom: 5px;
   left: 5px;
-  color: white;
-  font-size: 20px;
+}
+
+.control {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
 }
