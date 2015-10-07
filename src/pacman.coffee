@@ -36,4 +36,5 @@ class @Pacman
   collision: (other) =>
     if other.name == 'Ghost'
       @game.removeFromScene(@object)
+      document.getElementById('over').innerHTML = 'GAME OVER'
       document.getElementById('over').style.display = 'block'

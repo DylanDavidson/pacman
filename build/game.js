@@ -38,6 +38,7 @@
 
     Game.prototype.render = function() {
       this.updateCamera();
+      console.log(this.dots.dots.length);
       return this.base.render();
     };
 

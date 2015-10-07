@@ -53,6 +53,7 @@
     Pacman.prototype.collision = function(other) {
       if (other.name === 'Ghost') {
         this.game.removeFromScene(this.object);
+        document.getElementById('over').innerHTML = 'GAME OVER';
         return document.getElementById('over').style.display = 'block';
       }
     };

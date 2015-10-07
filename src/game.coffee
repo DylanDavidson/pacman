@@ -29,6 +29,7 @@ class @Game
 
   render: ->
     @updateCamera()
+    console.log(@dots.dots.length)
     @base.render()
 
   updateCamera: ->

@@ -9,9 +9,10 @@
 
     Dot.MASS = 0;
 
-    function Dot(game) {
+    function Dot(game, dots) {
       this.collision = bind(this.collision, this);
       this.game = game;
+      this.dots = dots;
       this.geometry = new THREE.SphereGeometry(Dot.RADIUS);
       this.material = new THREE.MeshBasicMaterial({
         color: Dot.COLOR
@@ -29,7 +30,12 @@
 
     Dot.prototype.collision = function(other_object) {
       if (other_object.name === 'Pacman') {
-        return this.game.removeFromScene(this.object);
+        this.game.removeFromScene(this.object);
+        this.dots.dots.splice(this.dots.dots.indexOf(this), 1);
+      }
+      if (this.dots.dots.length <= 0) {
+        document.getElementById('over').innerHTML = 'YOU WIN';
+        return document.getElementById('over').style.display = 'block';
       }
     };
 

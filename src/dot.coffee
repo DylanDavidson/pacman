@@ -3,8 +3,9 @@ class @Dot
   @COLOR: 'white'
   @MASS: 0
 
-  constructor: (game) ->
+  constructor: (game, dots) ->
     @game = game
+    @dots = dots
     @geometry = new THREE.SphereGeometry(Dot.RADIUS)
     @material = new THREE.MeshBasicMaterial({ color: Dot.COLOR })
     @object = new Physijs.SphereMesh(@geometry, @material, Dot.MASS)
@@ -19,3 +20,7 @@ class @Dot
   collision: (other_object) =>
     if(other_object.name == 'Pacman')
       @game.removeFromScene(@object)
+      @dots.dots.splice(@dots.dots.indexOf(@), 1)
+    if @dots.dots.length <= 0
+      document.getElementById('over').innerHTML = 'YOU WIN'
+      document.getElementById('over').style.display = 'block'
